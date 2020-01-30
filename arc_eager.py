@@ -25,15 +25,15 @@ def main():
    
     parser = TransitionParser('arc-eager')
     ## Training
-    parser.train(training_set,'arc_eager.model')
-    with open('parser.pkl','wb') as out:
-        pickle.dump(parser,out)
+    ##parser.train(training_set,'arc_eager.model')
+    ##with open('parser.pkl','wb') as out:
+    ##    pickle.dump(parser,out)
     ## Evaluation
-    ##with open('parser.pkl','rb') as in:
-    ##    parser = pickle.load(in)
-    ##predictions = parser.parse(test_set,'arc_eager.model')
-    ##de = DependencyEvaluator(predictions,test_set)
-    ##print(de.eval())
+    with open('parser.pkl','rb') as in_file:
+        parser = pickle.load(in_file)
+    predictions = parser.parse(test_set,'arc_eager.model')
+    de = DependencyEvaluator(predictions,test_set)
+    print(de.eval())
     return
 
 if __name__=='__main__':
