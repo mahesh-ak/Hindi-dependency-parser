@@ -11,6 +11,8 @@ try:
     from flask import session
     from spacy import displacy
     from flaskext.markdown import Markdown
+    from arc_eager import Process
+    import os
 
 except Exception as e:
     print("Some Modules are Missing")
@@ -47,6 +49,7 @@ def home():
 @app.route("/thanks", methods=["GET", "POST"])
 def thanks():
     val = session['data']
+    Process(val)
     # newval = foo(val)
     ex = [{
         "words": [
@@ -60,10 +63,8 @@ def thanks():
             {"start": 2, "end": 3, "label": "det", "dir": "left"},
             {"start": 1, "end": 3, "label": "attr", "dir": "right"}
         ]
-    }]
-    htm = displacy.render(ex, manual="True")
-    print(htm)
-    return render_template('thanks.html', val=val, html=htm)
+    }] 
+    return render_template('thanks.html',user_image='/static/process.png')
 
 
 if __name__ == "__main__":
