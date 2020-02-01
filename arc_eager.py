@@ -3,6 +3,28 @@ from nltk.parse import DependencyGraph, DependencyEvaluator
 from nltk.parse.transitionparser import TransitionParser
 import pickle
 
+def Process(sentence):
+    words = sentence.replace('।','').split() + ['।']
+    text = []
+    for word in words:
+        text.append(' '.join([word,'NOUN','0','NMOD']))
+    dg = DependencyGraph('\n'.join(text))
+    with open('parser.pkl','rb') as in_file:
+        parser = pickle.load(in_file)
+    predictions = parser.parse([dg],'arc_eager.model')
+    out_dg = predictions[0].to_conllu()
+    out = parse_incr(out_dg)
+    to = {'words':[],'arcs':[]}
+
+    for token in out:
+        to['words'].append({"text": token['form'], "tag": token['upostag']})
+        to['arcs'].append({"start": token['head'], "end": token['id'], "label": token['deprel'], "dir": "left"})
+    
+    return [to]
+
+
+    
+
 ## creates dependency graph list according to nltk library specification
 def DepGraphList(sentenceList):
     dgList = []
