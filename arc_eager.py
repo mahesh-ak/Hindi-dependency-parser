@@ -1,19 +1,21 @@
-from conllu import parse_incr
+from conllu import parse_incr, parse
 from nltk.parse import DependencyGraph, DependencyEvaluator
 from nltk.parse.transitionparser import TransitionParser
 import pickle
 import pygraphviz as pgv
 
 def Process(sentence):
-    words = sentence.replace('।','').split() + ['।']
+    words = sentence.replace('|','।').split()
     text = []
     for word in words:
-        text.append(' '.join([word,'NOUN','0','NMOD']))
+        text.append(' '.join([word,'VERB','0','ROOT']))
     dg = DependencyGraph('\n'.join(text))
+    parser = TransitionParser('arc-eager')
     with open('parser.pkl','rb') as in_file:
         parser = pickle.load(in_file)
     predictions = parser.parse([dg],'arc_eager.model')
-    out_dot = predictions[0].to_dot()
+    out = DependencyGraph(predictions[0].to_conll(4))
+    out_dot = out.to_dot()
     G = pgv.AGraph(out_dot)
     G.layout(prog='dot') # use dot
     G.draw('static/process.png')
