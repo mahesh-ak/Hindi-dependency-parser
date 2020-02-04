@@ -19,7 +19,9 @@ def test_fn(test_sent):
     with open('my_tagger.dill', 'rb') as f:
         tagger = dill.load(f)
     out = tagger.tag(test_sent)
-    print('Output :\n',out)
+    tagged_out = [tags for _,tags in out]
+    # print('Output :\n',tagged_out)
+    print(tagged_out)
 
 
 
