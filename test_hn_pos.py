@@ -31,6 +31,7 @@ def test_fn(test_sent):
 #     test_sentences.append(tokenlist)
 # # test_data_hn=[[(token['form'],token['upostag']) for token in sentence ]for sentence in test_sentences ]
 
+
 # test1=[token['form'] for token in test_sentences[10]]
 # print('input:\n',test1)
 # test_fn(test1)
