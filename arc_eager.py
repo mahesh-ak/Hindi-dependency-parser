@@ -3,12 +3,14 @@ from nltk.parse import DependencyGraph, DependencyEvaluator
 from nltk.parse.transitionparser import TransitionParser
 import pickle
 import pygraphviz as pgv
+from test_hn_pos import test_fn
 
 def Process(sentence):
     words = sentence.replace('|','।').split()
+    tags = test_fn(words)
     text = []
-    for word in words:
-        text.append(' '.join([word,'VERB','0','ROOT']))
+    for word, tag in zip(words,tags):
+        text.append(' '.join([word,tag,'1','NMOD']))
     dg = DependencyGraph('\n'.join(text))
     parser = TransitionParser('arc-eager')
     with open('parser.pkl','rb') as in_file:
@@ -51,11 +53,12 @@ def main():
     ##with open('parser.pkl','wb') as out:
     ##    pickle.dump(parser,out)
     ## Evaluation
-    with open('parser.pkl','rb') as in_file:
-        parser = pickle.load(in_file)
-    predictions = parser.parse(test_set,'arc_eager.model')
-    de = DependencyEvaluator(predictions,test_set)
-    print(de.eval())
+    # with open('parser.pkl','rb') as in_file:
+    #     parser = pickle.load(in_file)
+    # predictions = parser.parse(test_set,'arc_eager.model')
+    # de = DependencyEvaluator(predictions,test_set)
+    # print(de.eval())
+    Process('राम अच्छा पुरुष है |')
     return
 
 if __name__=='__main__':
