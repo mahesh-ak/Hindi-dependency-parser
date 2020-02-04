@@ -25,13 +25,16 @@ def test_fn(test_sent):
 
 
 
-# data_file = open("data/UD_Hindi-HDTB/hi_hdtb-ud-test.conllu", "r", encoding="utf-8")
-# test_sentences=[]
-# for tokenlist in parse_incr(data_file):
-#     test_sentences.append(tokenlist)
-# # test_data_hn=[[(token['form'],token['upostag']) for token in sentence ]for sentence in test_sentences ]
+def main():
+    data_file = open("hi_hdtb-ud-test.conllu", "r", encoding="utf-8")
+    test_sentences=[]
+    for tokenlist in parse_incr(data_file):
+        test_sentences.append(tokenlist)
+    # test_data_hn=[[(token['form'],token['upostag']) for token in sentence ]for sentence in test_sentences ]
 
+    test1=[token['form'] for token in test_sentences[10]]
+    print('input:\n',test1)
+    print(test_fn(test1))
 
-# test1=[token['form'] for token in test_sentences[10]]
-# print('input:\n',test1)
-# test_fn(test1)
+if __name__ == "__main__":
+    main()
