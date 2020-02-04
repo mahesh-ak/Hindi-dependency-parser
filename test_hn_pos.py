@@ -21,7 +21,7 @@ def test_fn(test_sent):
     out = tagger.tag(test_sent)
     tagged_out = [tags for _,tags in out]
     # print('Output :\n',tagged_out)
-    print(tagged_out)
+    return tagged_out
 
 
 
@@ -33,4 +33,4 @@ for tokenlist in parse_incr(data_file):
 
 test1=[token['form'] for token in test_sentences[10]]
 print('input:\n',test1)
-test_fn(test1)
+print(test_fn(test1))
