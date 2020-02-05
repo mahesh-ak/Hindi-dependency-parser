@@ -16,13 +16,18 @@ def Process(sentence):
     with open('parser.pkl','rb') as in_file:
         parser = pickle.load(in_file)
     predictions = parser.parse([dg],'arc_eager.model')
-    out = DependencyGraph(predictions[0].to_conll(4))
-    out_dot = out.to_dot()
-    G = pgv.AGraph(out_dot)
-    G.layout(prog='dot') # use dot
-    G.draw('static/process.png')
-
-    
+    txt = predictions[0].to_conll(4)
+    err = False
+    try:
+        out = DependencyGraph(txt)
+        out_dot = out.to_dot()
+        G = pgv.AGraph(out_dot)
+        G.layout(prog='dot') # use dot
+        G.draw('static/process.png')
+    except:
+        err = True
+        txt += '''Error generating graph.\n''' 
+    return txt, err
 
 
     

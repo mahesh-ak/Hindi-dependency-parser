@@ -35,6 +35,7 @@ def foo(value):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+
     form = Widgets()
     if request.method == 'POST':
         if (form.validate_on_submit()):
@@ -49,7 +50,8 @@ def home():
 @app.route("/thanks", methods=["GET", "POST"])
 def thanks():
     val = session['data']
-    Process(val)
+    txt, err = Process(val)
+    txt = txt.split('\n')
     # newval = foo(val)
     ex = [{
         "words": [
@@ -64,7 +66,8 @@ def thanks():
             {"start": 1, "end": 3, "label": "attr", "dir": "right"}
         ]
     }] 
-    return render_template('thanks.html',user_image='/static/process.png')
+    
+    return render_template('thanks.html',user_image='/static/process.png',text=txt,show= not err)
 
 
 if __name__ == "__main__":

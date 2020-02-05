@@ -29,7 +29,13 @@
 
   <body>
     <!-- <h1>Hello</h1> -->
-    <img src="{{user_image}}" alt="User Image">
+    {% if show %}
+      <img src="{{user_image}}" alt="User Image">
+    {% endif %}
+    {% for para in text %}
+      <p>{{para}}</p>
+    {% endfor %}
+
 
     <!-- <script>
       var a = document.getElementById("parserContent").innerHTML;
