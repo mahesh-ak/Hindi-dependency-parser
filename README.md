@@ -20,11 +20,15 @@ Dependencies (Implemented and tested on these):
 Instructions:
 
 Run the following from this directory to fetch the required data
+```bash
 > mkdir data
 > cd data
 > git clone https://github.com/UniversalDependencies/UD_Hindi-HDTB.git
 > cd ..
+```
 
 Run the following to host the app at localhost:5000
+```bash
 > python app.py
+```
 
