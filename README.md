@@ -1,5 +1,5 @@
 # Hindi-dependency-parser
-A project in course CS698O: Topics in Natural Language Processing offered in Winter 2020 at IIT Kanpur by Instructor Prof. Ashutosh Modi, IIT Kanpur.
+A project in course CS698O: Topics in Natural Language Processing offered in Winter 2020 at IIT Kanpur instructed by Prof. Ashutosh Modi, IIT Kanpur.
 
 ## Developers:
 * Abhishek Jaiswal
