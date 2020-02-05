@@ -13,9 +13,9 @@ def Process(sentence):
         text.append(' '.join([word,tag,'1','NMOD']))
     dg = DependencyGraph('\n'.join(text))
     parser = TransitionParser('arc-eager')
-    with open('parser.pkl','rb') as in_file:
+    with open('models/parser.pkl','rb') as in_file:
         parser = pickle.load(in_file)
-    predictions = parser.parse([dg],'arc_eager.model')
+    predictions = parser.parse([dg],'models/arc_eager.model')
     txt = predictions[0].to_conll(4)
     err = False
     try:
@@ -54,13 +54,13 @@ def main():
    
     parser = TransitionParser('arc-eager')
     ## Training
-    ##parser.train(training_set,'arc_eager.model')
-    ##with open('parser.pkl','wb') as out:
+    ##parser.train(training_set,'models/arc_eager.model')
+    ##with open('models/parser.pkl','wb') as out:
     ##    pickle.dump(parser,out)
     ## Evaluation
-    # with open('parser.pkl','rb') as in_file:
+    # with open('models/parser.pkl','rb') as in_file:
     #     parser = pickle.load(in_file)
-    # predictions = parser.parse(test_set,'arc_eager.model')
+    # predictions = parser.parse(test_set,'models/arc_eager.model')
     # de = DependencyEvaluator(predictions,test_set)
     # print(de.eval())
     Process('राम अच्छा पुरुष है |')

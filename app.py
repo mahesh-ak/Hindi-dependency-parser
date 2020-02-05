@@ -9,7 +9,6 @@ try:
     from wtforms.validators import DataRequired
 
     from flask import session
-    from spacy import displacy
     from flaskext.markdown import Markdown
     from arc_eager import Process
     import os
@@ -44,7 +43,7 @@ def add_header(r):
     r.headers["Expires"] = "0"
     r.headers['Cache-Control'] = 'public, max-age=0'
     return r
-    
+
 @app.route("/", methods=["GET", "POST"])
 def home():
 

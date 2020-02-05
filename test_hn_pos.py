@@ -16,7 +16,7 @@ import dill
 
 def test_fn(test_sent):
 
-    with open('tnt_pos_tagger.dill', 'rb') as f:
+    with open('models/tnt_pos_tagger.dill', 'rb') as f:
         tagger = dill.load(f)
     out = tagger.tag(test_sent)
     tagged_out = [tags for _,tags in out]
