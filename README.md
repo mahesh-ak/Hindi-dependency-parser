@@ -4,7 +4,7 @@ A project in course CS698O: Topics in Natural Language Processing offered in Win
 ## Developers:
 * Abhishek Jaiswal
 * A.V.S.D.S.Mahesh
-* Tushar Shandilya
+* Tushar Shandhilya
 
 ## Dependencies (Implemented and tested on these):
 * Python 3.7
