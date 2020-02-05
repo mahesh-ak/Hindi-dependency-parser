@@ -1,4 +1,10 @@
 # Hindi-dependency-parser
+A project in course CS698O: Topics in Natural Language Processing offered in Winter 2020 at IIT Kanpur by Instructor Prof. Ashutosh Modi, IIT Kanpur.
+
+Developers:
+Abhishek Jaiswal
+A.V.S.D.S.Mahesh
+Tushar Shandilya
 
 Dependencies (Implemented and tested on these):
 * Python 3.7
@@ -10,3 +16,15 @@ Dependencies (Implemented and tested on these):
 * conllu 2.2.2
 * scikit-learn 0.22.1
 * dill 0.3.1.1
+
+Instructions:
+
+Run the following from this directory to fetch the required data
+> mkdir data
+> cd data
+> git clone https://github.com/UniversalDependencies/UD_Hindi-HDTB.git
+> cd ..
+
+Run the following to host the app at localhost:5000
+> python app.py
+
