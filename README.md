@@ -1,12 +1,12 @@
-# Hindi-dependency-parser
+### Hindi-dependency-parser
 A project in course CS698O: Topics in Natural Language Processing offered in Winter 2020 at IIT Kanpur by Instructor Prof. Ashutosh Modi, IIT Kanpur.
 
-Developers:
-Abhishek Jaiswal
-A.V.S.D.S.Mahesh
-Tushar Shandilya
+# Developers:
+--* Abhishek Jaiswal
+--* A.V.S.D.S.Mahesh
+--* Tushar Shandilya
 
-Dependencies (Implemented and tested on these):
+# Dependencies (Implemented and tested on these):
 * Python 3.7
 * flask 1.1.1
 * flask-wtf 0.14.2
@@ -17,7 +17,7 @@ Dependencies (Implemented and tested on these):
 * scikit-learn 0.22.1
 * dill 0.3.1.1
 
-Instructions:
+# Instructions:
 
 Run the following from this directory to fetch the required data
 ```bash
