@@ -4,19 +4,33 @@ from nltk.parse.transitionparser import TransitionParser
 import pickle
 import pygraphviz as pgv
 from test_hn_pos import test_fn
+import os
 
 def Process(sentence):
     words = sentence.replace('|','।').split()
     tags = test_fn(words)
     text = []
+    i = 0
     for word, tag in zip(words,tags):
-        text.append(' '.join([word,tag,'1','NMOD']))
+        i += 1
+        fill = '_'
+        text.append('\t'.join([str(i),word,fill,fill,fill,fill,fill,fill,fill,fill]))
     dg = DependencyGraph('\n'.join(text))
-    parser = TransitionParser('arc-eager')
-    with open('models/parser.pkl','rb') as in_file:
-        parser = pickle.load(in_file)
-    predictions = parser.parse([dg],'models/arc_eager.model')
-    txt = predictions[0].to_conll(4)
+    text = '\n'.join(text)
+    with open('biaffine-parser-master/data/naive3.conllx','w') as f:
+        f.write(text)
+    os.chdir('biaffine-parser-master')
+    os.system('python run.py predict --feat=bert --fdata=data/naive3.conllx --fpred=data/naive3.conllx')
+    txt = ''
+    os.chdir('..')
+    with open('biaffine-parser-master/data/naive3.conllx','r') as f:
+        txt = f.read()
+    
+    # parser = TransitionParser('arc-eager')
+    # with open('models/parser.pkl','rb') as in_file:
+    #     parser = pickle.load(in_file)
+    # predictions = parser.parse([dg],'models/arc_eager.model')
+    # txt = predictions[0].to_conll(4)
     err = False
     try:
         out = DependencyGraph(txt)
