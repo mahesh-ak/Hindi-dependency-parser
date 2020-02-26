@@ -17,6 +17,7 @@ def Process(sentence):
         text.append('\t'.join([str(i),word,fill,fill,fill,fill,fill,fill,fill,fill]))
     dg = DependencyGraph('\n'.join(text))
     text = '\n'.join(text)
+    text = text + '\n\n' + text
     with open('biaffine-parser-master/data/naive3.conllx','w') as f:
         f.write(text)
     os.chdir('biaffine-parser-master')
@@ -24,7 +25,7 @@ def Process(sentence):
     txt = ''
     os.chdir('..')
     with open('biaffine-parser-master/data/naive3.conllx','r') as f:
-        txt = f.read()
+        txt = f.read().split('\n\n')[0]
     
     # parser = TransitionParser('arc-eager')
     # with open('models/parser.pkl','rb') as in_file:
@@ -49,16 +50,24 @@ def Process(sentence):
 ## creates dependency graph list according to nltk library specification
 def DepGraphList(sentenceList):
     dgList = []
+    i = 0
+    j = 0
     for sentence in sentenceList:
         text = []
         for token in sentence:
             text.append(' '.join([token['form'],token['upostag'],str(token['head']),token['deprel'].upper()]))
-        dg = DependencyGraph('\n'.join(text))
+        try:
+            dg = DependencyGraph('\n'.join(text))
+        except:
+            j += 1
+            continue
+        i += 1
         dgList.append(dg)
+    print(i,j)
     return dgList
 
 def main():
-    data_file = open('data/UD_Hindi-HDTB/hi_hdtb-ud-dev.conllu','r',encoding='utf-8')
+    data_file = open('data/UD_Bhojpuri-BHTB-master/bho_bhtb-ud-test.conllu','r',encoding='utf-8')
     sentence_iter = parse_incr(data_file)
     sentences = []
     for s in sentence_iter:
@@ -68,11 +77,11 @@ def main():
    
     parser = TransitionParser('arc-eager')
     ## Training
-    ##parser.train(training_set,'models/arc_eager.model')
-    ##with open('models/parser.pkl','wb') as out:
-    ##    pickle.dump(parser,out)
-    ## Evaluation
-    # with open('models/parser.pkl','rb') as in_file:
+    # parser.train(training_set,'models/arc_eager.model')
+    # with open('models/parser2.pkl','wb') as out:
+    #      pickle.dump(parser,out)
+    # # ## Evaluation
+    # with open('models/parser2.pkl','rb') as in_file:
     #     parser = pickle.load(in_file)
     # predictions = parser.parse(test_set,'models/arc_eager.model')
     # de = DependencyEvaluator(predictions,test_set)

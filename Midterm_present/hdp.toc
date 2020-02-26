@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Motivation}{6}{0}{1}
+\beamer@sectionintoc {2}{Related Work}{8}{0}{2}
+\beamer@sectionintoc {3}{Hindi Dependency Parser}{10}{0}{3}
+\beamer@sectionintoc {4}{Cross-lingual Learning}{14}{0}{4}
+\beamer@sectionintoc {5}{Results}{17}{0}{5}
+\beamer@sectionintoc {6}{Conclusion and Remarks}{20}{0}{6}
