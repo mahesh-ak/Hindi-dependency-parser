@@ -19,7 +19,7 @@ class Train(CMD):
         subparser = parser.add_parser(
             name, help='Train a model.'
         )
-        subparser.add_argument('--buckets', default=32, type=int,
+        subparser.add_argument('--buckets', default=15, type=int,
                                help='max num of buckets to use')
         subparser.add_argument('--punct', action='store_true',
                                help='whether to include punctuation')
